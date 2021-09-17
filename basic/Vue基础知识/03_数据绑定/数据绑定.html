@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据绑定</title>
+    <script src="../../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        单向数据绑定：<input type="text" :value='name'><br>
+        双向数据绑定：<input type="text" v-model='name'><br>
+
+        <!-- 下面用法错误，v-model 只能用在表单类元素上，或者来说，应用于输入类元素-->>
+        <!-- <h2 v-model:x='name'>你好啊</h2>  -->
+        
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        new Vue({
+            el: '#root',
+            data:{
+                'name':'我就是input'
+            }
+        })
+    </script>
+
+</body>
+</html>

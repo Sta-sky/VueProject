@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气案例——监视属性</title>
+    <script src="../../js/vue.js"></script>
+</head> 
+<body>
+    <div id="root">
+
+
+        <!--     2、深度监视：
+        1、Vue中的watch默认不见时对象内部值得改变（一层）
+        2、配置deep:ture, 启用深度监视，可以检测对象内部值得改变（多层）
+    备注：
+        1、Vue自身可以检测对象内部值得癌变，但Vue提供给wathc默认不可以，
+        2、使用watch是根据数据得具体结构，确定是否使用深度监视。
+ -->
+
+        <h1>欢迎来到 {{name}} 学习</h1>
+        <h1>今天天气很{{info}}</h1>
+
+        <!-- @xxx='yyy' xxx事件， yyy可以写一些简单的执行语句，不用写方法 -->
+
+        <!-- <button @click='changeWearth>点击切换天气</button> -->
+
+        <!-- 简写 在语句短的情况下，可简写-->
+        <button @click='isHot = !isHot'>点击切换天气</button>
+
+
+
+        <hr>
+        <h1>a的值是{{number.a}}</h1>
+        <button @click='number.a++'>点击a+1</button>
+        <h1>b的值是{{number.b}}</h1>
+        <button @click='number.b--'>点击b-1</button>
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: '尚硅谷',
+                isHot: true,
+                number: {
+                    a: 1,
+                    b: 100
+
+                }
+            },
+            
+            // 计算属性  配置对象
+            computed: {
+                info(){
+                    return this.isHot ? '炎热':'凉爽'
+                }
+            },
+
+            // 监视属性 配置对象
+            watch: {
+                isHot:{
+                    // 函数, 当isHot发生改变时  执行此函数
+                    handler(newVal, oldVal){
+                        console.log(newVal, oldVal)
+                    },
+                    // immediate: true // 初始化时  让handler函数就执行
+                },
+
+                // 深度监视  监视多级结构中所有属性的变化。
+                number:{
+                    deep: true,
+                    handler(val){
+                        console.log('a改变了', val)
+                    }
+                }
+
+            }
+        })  
+    </script>
+</body> 
+</html>

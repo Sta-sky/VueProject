@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>姓名案例 计算属性实现</title>
+    <script src="../../js/vue.js"></script>
+</head> 
+<body>
+
+    <!--     
+        计算属性：
+            1、定义：要用的属性不存在，要通过已有的属性计算得来
+            2、原理，底层接住了Object.defineproperty方法提供的getter/setter
+            3、get函数什么时候执行:
+                1、初次读取的时候，
+                2、以来的数据变化的时候会调用，
+            4、优势：与methods实现相比较，内部有缓存机制（复用），效率更高，调试方便，
+            5、备注：
+                1、计算属性最终会出现在vm上可直接读取使用即可。
+                2、如果计算属性要被修改，那必须写set函数区响应修改，且set中要引起计算时依赖的数据发生改变。 -->
+    <div id="root">
+        <div class="input_div">
+            <h1>欢迎来到 {{name}} 学习</h1>
+            <span>姓：</span>
+            <input type="text" id="xing" v-model='firstName' placeholder="请输入姓"><br><br>
+            <span>名：</span>
+            <input type="text" id="ming" v-model='lastName' placeholder="请输入名"><br><br>
+            <span>姓名:{{fullName}}</span>
+        </div>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                'name': '尚硅谷',
+                firstName: '张',
+                lastName: '三'
+            },
+            computed: {
+                // fullName会被缓存 
+                fullName: {
+                    // get什么时候会被调用？ 1、初次读取的时候，2、以来的数据变化的时候会调用，
+                    get(){
+                        return this.firstName + '-' + this.lastName
+                    },
+
+                    // 当fullName被修改时，会被调用
+                    set(value){
+                        console.log('set modify')
+                        var arr = value.split('-')
+                        this.firstName = arr[0]
+                        this.lastName = arr[1]
+                    }
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气案例——监视属性 简写</title>
+    <script src="../../js/vue.js"></script>
+</head> 
+<body>
+    <div id="root">
+
+        <h1>欢迎来到 {{name}} 学习</h1>
+        <h1>今天天气很{{info}}</h1>
+
+        <button @click='isHot = !isHot'>点击切换天气</button>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                'name': '尚硅谷',
+                'isHot': true
+            },
+            
+            computed: {
+                info(){
+                    return this.isHot ? '炎热':'凉爽'
+                }
+            },
+
+            // 第一种简写方式
+            // 当配置项中只有handler时，可以简写
+            // watch: {
+            //     isHot(newVal, oldVal){
+            //         console.log(newVal, oldVal)
+            //     },
+            // }
+        })
+
+        // 第二种简写方式  不能写成箭头函数
+        vm.$watch('isHot', function(newVal, oldVal){
+            console.log(newVal, oldVal)
+        })        
+    </script>
+</body> 
+</html>

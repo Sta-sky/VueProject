@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>el与dsta得两种写法</title>
+    <script src="../../js/vue.js"></script>
+</head> 
+<body>
+    <div id="root">
+        <h1>你好. {{name}}</h1>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;  // 阻止 vue 在启动时 生成生产提示
+        const vue = new Vue({
+            // el: '#root',  第一种el写法
+            // data: {              第一种data写法  对象式，
+                // 'name': 'jack'
+            // }
+            data(){   // 第二种data  函数式
+                return {'name': 'jack'}
+            } 
+        })
+        vue.$mount('#root')  // 第二种el写法
+
+
+    </script>
+</body>
+</html>
+

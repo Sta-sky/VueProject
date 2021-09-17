@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>姓名案例 计算属性实现</title>
+    <script src="../../js/vue.js"></script>
+</head> 
+<body>
+
+    <div id="root">
+        <div class="input_div">
+            <h1>欢迎来到 {{name}} 学习</h1>
+            <span>姓：</span>
+            <input type="text" id="xing" v-model='firstName' placeholder="请输入姓"><br><br>
+            <span>名：</span>
+            <input type="text" id="ming" v-model='lastName' placeholder="请输入名"><br><br>
+            <span>姓名:{{fullName}}</span>
+        </div>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                'name': '尚硅谷',
+                firstName: '张',
+                lastName: '三',
+                fullName: '张-三'
+            },
+            
+    // 1、computed能完成得功能watch都可以完成。
+    // 2、watch能完成得功能，coupmted不一定能完成，
+    //     例如：watch可以进行异步操作
+    // 两个小的中要原则：
+    //     1、所被Vue管理的函数，最好协程普通函数，这样this的指向才是vm 或 组件实例对象，
+    //     2、所有不被Vue管理的函数（定时器回调函数】ajax的回调函数等），最好写成箭头函数，这样this只想的才是vm 或组件实例对象。
+
+
+
+            // 以下实现等待一秒再改变
+
+            // 不能实现
+            // computed: {
+            //     fullName(){
+            //         setTimeout(() => {
+            //             return this.firstName + '-' + this.lastName
+            //         }, timeout);
+            //     },
+            // },
+
+            //  例如：watch可以进行timeout异步操作 computed不能
+            watch: {
+                firstName(newVal){
+                    setTimeout(() => {
+                        this.fullName = this.firstName + '-' + this.lastName
+                    }, timeout);
+                },
+                lastName(newval){
+                    this.fullName = this.firstName + '-' + this.lastName
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

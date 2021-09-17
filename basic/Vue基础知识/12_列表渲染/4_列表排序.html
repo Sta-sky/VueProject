@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表排序</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        *{
+            font-size: 18px;
+            font-weight: 700;
+        }
+    </style>
+</head> 
+<body>
+    <div id="root">
+        <h4>人员列表</h4>   
+        搜索框：<input type="text" v-model='inputKey' placeholder="请输入搜索信息">
+        <button @click='sortType=2'>年龄升序</button>
+        <button @click='sortType=1'>年龄降序</button>
+        <button @click='sortType=0'>原顺序</button>
+        <ul>
+            <li v-for='person in newPersonList' :key="person.id" >
+                {{person.name}}-{{person.age}}--{{person.sex}}
+            </li>
+        </ul>
+
+        
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                personList: [
+                    {id: 001, name: '周冬雨',age:22, sex: '女'},
+                    {id: 002, name: '马冬梅',age:29, sex: '女'},
+                    {id: 003, name: '周杰伦',age:31, sex: '男'},
+                    {id: 004, name: '温兆伦',age:46, sex: '男'},
+                    {id: 005, name: '陈道明',age:51, sex: '男'},
+                    {id: 006, name: '姜文',age:46, sex: '男'},
+                    {id: 007, name: '姜武',age:44, sex: '男'},
+                    {id: '008', name: '梅超风',age:66, sex: '女'}
+                ],
+                inputKey: '',
+                sortType: 0  // 0 原顺序  1：降序 2： 升序
+            },
+
+
+            // 计算属性实现人员搜索
+            computed: {
+                newPersonList(){
+                    const arr =  this.personList.filter((p)=>{
+                        return p.name.indexOf(this.inputKey) !== -1
+                    })
+                    // 判断是否需要排序
+                    if (this.sortType){
+                        // (p1, p2)=>{} 为sort的回调函数  p1 -p1 表示对arr进行升序  p2-p1表示对arr降序
+                        return arr.sort((p1, p2)=>{
+                            return this.sortType == 2? p1.age-p2.age:p2.age-p1.age
+                        })
+
+                    }
+                    return arr
+                }
+            },
+        })
+    </script>
+</body>
+</html>

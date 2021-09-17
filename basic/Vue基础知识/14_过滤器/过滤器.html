@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过滤器</title>
+    <script src="../../js/vue.js"></script>
+    <script src="../../js/dayjs.min.js"></script>
+</head> 
+<body>
+
+		<!-- 
+			过滤器：
+				定义：对要显示的数据进行特定格式化后再显示（适用于一些简单逻辑的处理）。
+				语法：
+						1.注册过滤器：Vue.filter(name,callback) 或 new Vue{filters:{}}
+						2.使用过滤器：{{ xxx | 过滤器名}}  或  v-bind:属性 = "xxx | 过滤器名"
+				备注：
+						1.过滤器也可以接收额外参数、多个过滤器也可以串联
+						2.并没有改变原本的数据, 是产生新的对应的数据
+		-->
+
+    <div id="root">
+        <h1>显示格式化后的时间</h1>
+        <!-- 计算属性实现格式化 -->
+        <h2>当前的时间为 {{fNowTime}}</h2>
+
+        <!-- methods函数实现格式化 -->
+        <h2>当前的时间为 {{mNowTime()}}</h2>
+
+        <!-- 过滤器实现格式化 -->
+        <h2>当前的时间为 {{time | timeFilter}}</h2>
+
+        <!-- 过滤器传参 -->
+        <h2>当前的时间为 {{time | timeFilter('YYYY年MM月DD日')}}</h2>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        new Vue({
+            el: '#root',
+            data: {
+                time: 1631252500852  //时间戳
+            },
+            computed: {
+                fNowTime(){
+                    return dayjs(this.time).format('YYYY MM-DD HH:mm:ss') 
+                }
+            },
+
+            methods: {
+
+                mNowTime(){
+                    return dayjs(this.time).format('YYYY MM-DD HH:mm:ss')
+                }
+            },
+
+
+            filters: {
+                timeFilter(val, str='YYYY MM-DD HH:mm:ss'){
+                    return dayjs(val).format(str)
+                }
+            }
+            
+
+        
+        
+        })
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

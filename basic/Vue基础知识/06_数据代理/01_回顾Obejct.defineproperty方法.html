@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据代理</title>
+    <script src="../../js/vue.js"></script>
+</head> 
+<body>
+
+    <script type="text/javascript">
+        let number = 20
+        let person = {
+            'name': '张三',
+            'sex': '男'
+        }
+        Object.defineProperty(person, 'age', {
+            // value: numer,
+            // enumerable: true,
+            // writable:true,  // 数据可修改
+
+            get(){
+                console.log('有人获取了年龄')
+                return number
+            },
+            set(value){
+                console.log('有人修改数据')
+                number = value
+            }
+        })
+        console.log(person)
+
+
+    </script>
+</body>
+</html>

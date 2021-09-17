@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>样式绑定</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        .basic{
+            width: 500px;
+            height: 100px;
+            border: 2px solid black;
+        }
+        .happy{
+            background-color: crimson;
+        }
+        .sad{
+            background-color: darkgoldenrod;
+        }
+        .normal{
+            background-color:cadetblue;
+        }
+
+        .style_1{
+            background-color: cornflowerblue;
+        }
+
+        .style_2{
+            border-radius: 20px;
+            padding: 10px;
+        }
+
+        .style_3{
+            color: yellow;
+            font-size: 20px;
+        }
+
+
+    </style>
+</head> 
+<body>
+    <div id="root" >
+        <!-- 绑定class样式 -- 字符串写法 适用于：样式的类名不确定，需要动态指定 -->
+        <div class="basic" :class='styles' >欢迎来到 {{name}} 学习</div><br><br>
+        <button @click='strChangeCss'>字符串写法按钮</button>
+
+
+        <!-- 绑定class样式 -- 数组写法 适用于：需要绑定的样式个数不确定，名字也不确定 -->
+        <div class="basic" :class='classArr' >欢迎来到 {{name}} 学习</div><br><br>
+
+
+        <!-- 绑定class样式 -- 对象写法 适用于：样式的名字确定，个数也确定，但需要动态确定用不用 -->
+        <div class="basic" :class='classObj'>欢迎来到 {{name}} 学习</div><br><br>
+        <button @click='objChangeCss'>对象写法按钮</button>
+
+        <!-- 绑定class样式 -- 内联样式绑定  单个形式 -->
+        <div class="basic" :style="fontObj">欢迎来到 {{name}} 学习</div><br><br>
+
+        <!-- 绑定class样式 -- 内联样式绑定  -- 数组形式 -->
+        <div class="basic" :style="[fontObj, fontObj_2]">欢迎来到 {{name}} 学习</div><br><br>
+
+    </div><br><br><br>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        var cssArr = ['style_1', 'style_2', 'style_3']
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: '尚硅谷',
+                styles: 'normal',
+                classArr: ['happy', 'normal', 'sad', 'style_2', 'styele_3'],
+                classObj: {
+                    style_1: false,
+                    style_2: false
+                },
+                fontObj:{
+                    fontSize: '50px'
+                },
+
+                fontObj_2:{
+                    backgroundColor: 'yellow'
+                }
+            },
+            methods: {
+                strChangeCss(){
+                    let arr = ['happy', 'sad', 'normal']
+                    rannum = Math.floor(Math.random()*3)
+                    this.styles = arr[rannum]
+
+                },
+                objChangeCss(){
+                    this.classObj.style_1 = !this.classObj.style_1
+                    this.classObj.style_2 = !this.classObj.style_2
+                }
+            }
+        })
+    </script>
+</body>
+</html>

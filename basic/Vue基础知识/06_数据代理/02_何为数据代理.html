@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>何为数据代理</title>
+</head>
+<body>
+
+    <!-- 通过一个对象代理另一个对象中的属性的操作 -->
+    <script type="text/javascript">
+        let obj_1 = {x:100}
+        let obj_2 = {y:200}
+
+        Object.defineProperty(obj_1, 'age', {
+            get(){
+                console.log('返回obj_2的value')
+                return obj_2.y
+            },
+            set(value){
+                obj_2.y=value                
+            }
+
+        })
+    </script>
+</body>
+</html>

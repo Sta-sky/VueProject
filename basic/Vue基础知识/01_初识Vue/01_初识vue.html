@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识vue -01</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <!-- 初识vue ：
+        1、想让vue工作，就必须传入配置对象 el， data，
+        2、root容器中的代码依然符合html规范，只不过混入了一些特殊的vue语法，
+        3、root容器中的代码被称为 vue 的模板 
+        4、Vue 实例和容器时一一对应的，
+        5、真实开发中只有一个Vue实例，并且会配合着组件一起使用；
+        6、{{xxx}} 中的xxx要写js表达式，却xxx可以自动读取到data中的所有属性，
+        7、一旦data中的数据发生改变，那么模板中用到该数据的地方也会自动更新
+
+        注意区分：js表达式 和 js 代码（语句）
+            1、表达式： 一个表达式会产生一个值，可以放在任何需要值得地方：
+                (1). a
+                (1). a+b
+                (1). func(2)
+                (1). x === y ? 'a' : 'b'  // 三元表达式 如果x 等于 y 结果时是a， 否则b
+            2、js代码（语句）
+                (1). if(){} 
+                (2) .for(){}
+    -->
+
+    <!-- 容器 -->
+    <div id="root">
+        <h1>Hello! {{date.name}}</h1>
+        <h1>年龄：{{date.age}}</h1>
+        <h1>性别： {{date.sex}}</h1>
+        <h1>生日： {{date.brithday}}</h1>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false // 阻止 vue 在启动时 生成生产提示
+
+        // 创建vue实例
+        new Vue({
+            el: '#root',     // el 用于指定当前的vue  为那个容器服务， value 通常为css选择器
+            data: {
+                'date': 
+                {        // data 中用于存储数据，数据为指定的el容器去使用， 值暂时先写成一个对象，
+                    'name': '尚硅谷!!',
+                    'age': 27,
+                    'sex': 'man',
+                    'brithday': '1995-09-21'
+                }
+            }
+        })
+
+</script>
+
+</body>
+</html>

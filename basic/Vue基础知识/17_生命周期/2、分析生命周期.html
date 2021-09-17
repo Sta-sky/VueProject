@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分析生命周期</title>
+    <script src="../../js/vue.js"></script>
+</head> 
+<body>
+
+    <div id="root">
+        <h2> 当前的n值为 {{n}}</h2><br><br>
+        <button @click='add'>点击 n + 1 </button>
+        <button @click='bye'>点击销毁 vm </button>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                n:1
+            },
+            methods: {
+                add(){
+                    this.n++
+                },
+                bye(){
+                    console.log('====')
+                    this.$destroy()
+                } 
+            },
+
+
+            // 还未开始数据代理
+            beforeCreate() {
+                console.log('beforeCreate', this)
+                
+            },
+
+            // 开始数据代理
+            created() {
+                console.log('created', this._data.n)
+            },
+            // 解析模板生成虚拟DOM  
+
+            // 页面呈现未经Vue编译的DOM结构，
+            beforeMount() {
+                console.log('beforeMount', this)
+            },
+
+            // 将虚拟DOM转为真实DOM
+
+
+            // 渲染真实DOM
+            mounted() {
+                console.log('mounted')
+            },
+
+            beforeUpdate() {
+            },
+
+            updated() {
+                
+            },
+            
+            beforeDestroy() {
+                
+            },
+
+            destroyed() {
+                
+            },
+        })
+    </script>
+</body>
+</html>

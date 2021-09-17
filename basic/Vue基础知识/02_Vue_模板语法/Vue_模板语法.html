@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 模板语法</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+
+    <!--  
+        Vue 模板语法有两大类：
+            1、插值语法：
+                功能：用余光解析标签体内容
+                写法：{{xxx}}， xxx时js表达撒是，且可以直接读取到dsata中得所有属性。
+            2、指令语法：
+                功能：用于解析标签属性（包括标签属性，标签体内容、绑定事件.....）
+                举例：v-bind：href='xxx' 火简写为 :href='xxx',xxx同样要写js表达式，
+                      且可以直接读取到data中得所有属性，
+                备注：Vue中有很多指定，且都是以v-？？？，得写法，此处只是v-bind举例。
+    -->
+
+    <div id="root">
+        <h1>插值语法</h1>
+        <h3>我是{{name}}</h3>
+
+        <h1>指令语法</h1>
+        <a :href="school.url">点{{school.name}}区学习</a>
+
+        <a :href="Date.now()">点{{school.name}}区学习</a>
+        <h3></h3>
+    </div>
+    
+    <script type="text/javascript">
+        new Vue({
+            el: '#root',
+            data: {
+                'name': '党远洋',
+                'school': {
+                    'name': 'jack',
+                    'url': 'http://atguigu.com'
+                }
+
+            }
+        })
+    </script>
+
+</body>
+</html>

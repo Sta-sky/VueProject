@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表渲染</title>
+    <script src="../../js/vue.js"></script>
+    <style>
+        *{
+            font-size: 18px;
+            font-weight: 700;
+        }
+    </style>
+</head> 
+<body>
+    <div id="root">
+        <h4>角色信息</h4>   
+        <!-- 遍历数组 --> 
+        <ul>
+            <li v-for='(person, index) in personList' :key="person">
+                {{index}}-{{person.name}}-{{person.age}}
+            </li>
+        </ul>
+        <hr>
+        <h4>汽车信息</h4>   
+        <!-- 遍历对象 -->
+        <ul>
+            <li v-for='(val, key) in carInfo' :key="key">
+                {{key}}--{{val}}
+            </li>
+        </ul> 
+        <hr>
+
+        <h4>字符串信息</h4>   
+        <!-- 遍历字符串 -->
+        <ul>
+            <li v-for='(char, index) in strInfo' :key="index">
+                {{index}}--{{char}}
+            </li>
+        </ul> 
+        <hr>
+        <h4>range 指定次数遍历</h4>   
+        <!-- 遍历指定次数 -->
+        <ul>
+            <li v-for='(val, index) in 5' :key="index">
+                {{index}}--{{val}}
+            </li>
+        </ul> 
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        new Vue({
+            el: '#root',
+            data: {
+                personList: [
+                    {id: 001,name: '张三',age:14,},
+                    {id: 002,name: '李四',age:16,},
+                    {id: 003,name: '王五',age:18,},
+                ],
+                carInfo: {
+                    name: '奥迪',
+                    price: '70w',
+                    color: 'black'
+                },
+                strInfo: 'rwiobng单反v改变'
+            },
+        })
+    </script>
+</body>
+</html>

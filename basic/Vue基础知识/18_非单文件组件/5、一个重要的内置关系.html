@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一个重要的内置关系</title>
+    <script src="../../js/vue.js"></script>
+</head> 
+<body>
+
+
+    <div id="root">
+        <school></school>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        Vue.prototype.x = 809
+        
+  
+
+        const school = Vue.extend({
+            template: `
+                <div>
+                    <h1>学校名称 {{schoolName}}</h1>
+                    <h1>学校地址 {{address}}</h1>
+                    <button @click='tip'>点我提示</button>
+                </div>
+            `,
+            data(){
+                return {
+                    schoolName:'尚硅谷',
+                    address: ''
+
+                }
+            },
+            methods: {
+                tip(){
+                    alert(this.x)
+                }
+            },
+        })
+
+
+        // 定义一个构造函数
+
+        function Demo(){
+            this.a = 1  
+            this.b = 2
+        }
+
+        const demo = new Demo()
+        // 原型链
+        //prototype 显式原型属性
+        console.log(Demo.prototype)
+
+        //prototype 隐式原型属性
+        console.log(demo.__proto__)
+
+        // prototype，__proto__  两者统统指向原型对象
+
+        //一般程序员通过显式原型对象prototype操作原型对象，为其添加属性x  值为 99
+        Demo.prototype.x = 99
+
+        // 通过隐式原型对象 __proto__拿到原型对象
+        console.log(demo.__proto__.x)
+        console.log(demo.x)
+        console.log(demo.t)
+
+
+        // 创建vm
+        const vm = new Vue({
+            el: '#root',
+            // 注册组件
+            components:{school}
+        })
+
+
+    </script>
+</body>
+</html>

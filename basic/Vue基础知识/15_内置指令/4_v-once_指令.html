@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-once_指令 指令</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head> 
+<body>
+    <div id="root">
+        <h3 v-once>初始化n值为：{{n}}</h3><br>
+        <h3>当前的n值为：{{n}}</h3><br>
+        <button @click='n++'>点我n+1</button>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        new Vue({
+            el: '#root',
+            data: {
+                n: 1
+            }
+        })
+    </script>
+</body>
+</html>
