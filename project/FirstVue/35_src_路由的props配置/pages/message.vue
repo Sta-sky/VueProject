@@ -2,19 +2,22 @@
     <div>
         <ul>
             <li v-for='msg of messageArr' :key="msg.id">
-                <!-- 跳转路由并携带query参数的  to的字符串写法 -->
-                <!-- <router-link :to="`/home/message/detail?id=${msg.id}&title=${msg.title}`">{{msg.title}}</router-link>&nbsp;&nbsp; -->
+                <!-- 跳转路由并携带params参数的  to的字符串写法 -->
+                <!-- <router-link :to="`/home/message/detail/${msg.id}/${msg.title}`">{{msg.title}}</router-link>&nbsp;&nbsp; -->
 
                 <!-- 跳转路由并携带query参数的  to的对象写法 -->
-                <router-link 
+                <router-link
                     :to="{
-                        name:'xiangqing',
-                        query:{
+                        name: 'xiangqing',
+                        params:{
                             id: msg.id,
-                            title:msg.title
+                            title: msg.title
                         }
-                    }">
+                    }"
+                >
                     {{msg.title}}
+                </router-link>&nbsp;&nbsp;
+
                 </router-link>&nbsp;&nbsp;
             </li>
         </ul>

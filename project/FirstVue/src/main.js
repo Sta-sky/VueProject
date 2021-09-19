@@ -3,26 +3,30 @@ import Vue from 'vue'
 //引入App
 import App from './App.vue'
 
-// 引入路由
-import VueRoute from 'vue-router'
-import router from './router/index'
+
+
 //关闭Vue的生产提示
 Vue.config.productionTip = false
 import ElementUI from 'element-ui'
-import './assets/index.css'
 
+// 按需引入element ui
+// import { Button, Select, TimeSelect, Input, Row } from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+// import './assets/index.css'
 
+// Vue.component(Button.name, Button)
+// Vue.component(Select.name, Select)
+// Vue.component(TimeSelect.name, TimeSelect)
+// Vue.component(Row.name, Row)
+// 可自定义 引入组件标签的名字
+// Vue.component('my-input', Input)
 
 Vue.use(ElementUI)
 
-Vue.use(VueRoute)
-
-
-
-
 //创建vm
-new Vue({
+const vm = new Vue({
 	el:'#app',
 	render: h => h(App),
-	router
+	
+	
 })

@@ -1,0 +1,149 @@
+<template lang="">
+    <div>
+      <ul>
+        <h1 :style='{opacity}''>欢饮来到尚硅谷学东西</h1>
+        <li>新闻 000 1 <input type="text"></li> 
+        <li>新闻 000 2 <input type="text"></li> 
+        <li>新闻 000 3 <input type="text"></li> 
+      </ul>
+        <!-- <el-form ref="form" :model="form" label-width="80px">
+            <el-form-item label="活动名称">
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
+            <el-form-item label="活动区域">
+              <el-select v-model="form.region" placeholder="请选择活动区域">
+                <el-option label="区域一" value="shanghai"></el-option>
+                <el-option label="区域二" value="beijing"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="活动时间">
+              <el-col :span="11">
+                <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
+              </el-col>
+              <el-col class="line" :span="2">-</el-col>
+              <el-col :span="11">
+                <el-time-picker type="fixed-time" placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
+              </el-col>
+            </el-form-item>
+            <el-form-item label="即时配送">
+              <el-switch v-model="form.delivery"></el-switch>
+            </el-form-item>
+            <el-form-item label="活动性质">
+              <el-checkbox-group v-model="form.type">
+                <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
+                <el-checkbox label="地推活动" name="type"></el-checkbox>
+                <el-checkbox label="线下主题活动" name="type"></el-checkbox>
+                <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
+              </el-checkbox-group>
+            </el-form-item>
+            <el-form-item label="特殊资源">
+              <el-radio-group v-model="form.resource">
+                <el-radio label="线上品牌商赞助"></el-radio>
+                <el-radio label="线下场地免费"></el-radio>
+              </el-radio-group>
+            </el-form-item>
+            <el-form-item label="活动形式">
+              <el-input type="textarea" v-model="form.desc"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="onSubmit">立即创建</el-button>
+              <el-button>取消</el-button>
+            </el-form-item>
+          </el-form> -->
+    </div>
+</template>
+<script>
+export default {
+    name: 'News',
+    data() {
+      return {
+        opacity: 1,
+        form: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        }
+      }
+    },
+    methods: {
+      onSubmit() {
+        console.log('submit!');
+      }
+    },
+    mounted() {
+
+    },
+    beforeDestroy() {
+      clearInterval(this.timer)
+    },
+
+    // 类似于页面获取焦点  当展示组件此时 激活
+    activated() {
+      this.timer = setInterval(() => {
+        this.opacity -= 0.01
+        if(this.opacity <= 0) this.opacity = 1
+      }, 20);
+    },
+
+    // 类似于页面失去焦点  当 不 展示组件此时  失活
+    deactivated() {
+      clearInterval(this.timer)
+    },
+}
+</script>
+<style lang="css">
+.el-button{
+    font-size: 30px;
+    background-color: red;
+}
+
+.el-tabs__nav-scroll{
+    padding-left: 12px;
+    background: skyblue;
+}
+.el-tabs__item{
+    color: #fff;
+    padding: 0px;
+    height: 0px;
+    line-height: 0px;
+    opacity: 0.7;
+    font-size: 20px;
+    height: 100px;
+}
+.el-tabs__item.is-active{
+    color: #fff;
+    opacity: 1;
+}
+.el-icon-arrow-left{
+    color: #fff;
+    font-size: 20px;
+}
+.el-icon-arrow-right{
+color: #fff;
+font-size: 14px;
+}
+.el-tabs__nav-wrap.is-scrollable {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.el-tabs__nav-wrap {
+    overflow: hidden;
+    margin-bottom: -1px;
+    position: relative;
+}
+.el-tabs__nav-wrap::after {
+    content: “”;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    background-color: #E4E7ED;
+    z-index: 1;
+}
+</style>
